@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "APIFY MY POOL",
+    "version": "1.0",
+    "description": "Quick access to client pool with favorites and search",
+    "permissions": [
+      "storage"
+    ],
+    "action": {
+      "default_popup": "popup.html",
+      "default_title": "APIFY MY POOL"
+    },
+    "icons": {
+      "16": "Images/icon16.png",
+      "48": "Images/icon48.png",
+      "128": "Images/icon128.png"
+    },
+    "web_accessible_resources": [
+      {
+        "resources": ["clients.csv"],
+        "matches": ["<all_urls>"]
+      }
+    ]
+  }
