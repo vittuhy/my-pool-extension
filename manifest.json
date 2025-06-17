@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "APIFY MY POOL",
+    "name": "My pool",
     "version": "1.0",
     "description": "Quick access to client pool with favorites and search",
     "permissions": [
