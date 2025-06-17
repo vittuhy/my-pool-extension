@@ -64,12 +64,13 @@ function parseCSV(csvText) {
   for (let line of lines) {
     if (line.trim()) {
       const parts = line.split(',');
-      if (parts.length >= 3) {
+      if (parts.length >= 4) {
         const status = parts[0].trim();
         const name = parts[1].trim();
         const id = parts[2].trim();
+        const hubspotLink = parts[3].trim();
         if (status && name && id) {
-          clients.push({ status, name, id });
+          clients.push({ status, name, id, hubspotLink });
         }
       }
     }
@@ -151,9 +152,12 @@ function renderClientItem(client, isFavorite) {
   return `
     <div class="client-item">
       <div class="client-header">
-        <a href="#" class="client-name" data-id="${client.id}">
-          ${client.status} ${client.name}
-        </a>
+        <div class="client-info">
+          <span class="client-status">${client.status}</span>
+          <a href="#" class="client-name" data-id="${client.id}">
+            ${client.name}
+          </a>
+        </div>
         <button class="star-button ${favoriteClass}" data-id="${client.id}">
           ${starIcon}
         </button>
@@ -165,6 +169,14 @@ function renderClientItem(client, isFavorite) {
             <path d="M16 1H4C2.9 1 2 1.9 2 3v14h2V3h12V1zm3 4H8C6.9 5 6 5.9 6 7v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
           </svg>
         </button>
+        ${client.hubspotLink ? `
+          <a href="${client.hubspotLink}" target="_blank" class="hubspot-link" title="Open in HubSpot">
+            <svg class="hubspot-icon" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" fill="none" stroke="#888" stroke-width="1.5"/>
+              <path d="M8 7h2.5v4H13V7h2.5v10H13v-4H10.5v4H8z" fill="#888"/>
+            </svg>
+          </a>
+        ` : ''}
       </div>
     </div>
   `;
