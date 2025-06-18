@@ -240,10 +240,43 @@
     }
 
     .empty-state {
-      padding: 40px 16px;
-      text-align: center;
-      color: #888;
+      padding: 16px;
+      color: #ff6b6b;
       font-size: 14px;
+    }
+
+    .empty-state.centered {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding: 0;
+      gap: 16px;
+    }
+
+    .no-clients-message {
+      color: #ff6b6b;
+      font-size: 14px;
+    }
+
+    .search-console-button {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: #2c2c2e;
+      color: #f5f5f7;
+      text-decoration: none;
+      border: 1px solid #444;
+      border-radius: 6px;
+      font-size: 13px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .search-console-button:hover {
+      background-color: #3c3c3e;
+      border-color: #555;
+      color: #f5f5f7;
     }
 
     .client-list::-webkit-scrollbar {

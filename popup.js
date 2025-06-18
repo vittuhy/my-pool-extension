@@ -97,9 +97,10 @@ function handleSearch(e) {
   if (query === '') {
     filteredClients = [...clients];
   } else {
-    filteredClients = clients.filter(client =>
-      (`${client.status} ${client.name}`).toLowerCase().includes(query)
-    );
+    filteredClients = clients.filter(client => {
+      const searchString = `${client.status} ${client.name} ${client.id}`.toLowerCase();
+      return searchString.includes(query);
+    });
   }
 
   renderClientList();
@@ -107,7 +108,14 @@ function handleSearch(e) {
 
 function renderClientList() {
   if (filteredClients.length === 0) {
-    clientList.innerHTML = '<div class="empty-state">No clients found</div>';
+    const searchTerm = encodeURIComponent(searchInput.value.trim());
+    let html = '<div class="empty-state centered">';
+    html += '<div class="no-clients-message">No clients found</div>';
+    if (searchTerm) {
+      html += `<a href="https://console.apify.com/admin/users/${searchTerm}/billing/historical-usage" target="_blank" class="search-console-button">Search in Console</a>`;
+    }
+    html += '</div>';
+    clientList.innerHTML = html;
     return;
   }
 
