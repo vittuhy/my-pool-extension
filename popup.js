@@ -87,6 +87,7 @@ function setupEventListeners() {
     clearSearch.classList.remove('visible');
     filteredClients = [...clients];
     renderClientList();
+    searchInput.focus();
   });
 }
 
